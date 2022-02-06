@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -20,8 +21,8 @@ import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
  * @param onRetryButtonClick this lambda function use for resending the cancelled request to the server
  * @param onCancelButtonClick this lambda function use for cancel the posted / sent  request to the server
  * @param onOkButtonClick this lambda function use for hiding the showed Info BottomSheet
- * @param navigationIcon the navigation icon positioned on the right of screen ( like back button )
- * @param actionIcon the action icon positioned on the left of screen ( like history button )
+ * @param toolbarTitle the title of toolbar that brings a modifier for up streams
+ * @param navigationIcon the navigation icon positioned on the right of screen ( like back button ) that brings a modifier for up streams
  * @param content main content of each screen
  * @param bottomBar bottom bar of each screen
  * @param serviceName the name that should show on the toolbar
@@ -37,8 +38,8 @@ fun BaseAppScreen(
     queue: Queue<UIComponent> = Queue(mutableListOf()),
     bottomSheetState: ir.tafreshiali.ayan_core.util.BottomSheetState = ir.tafreshiali.ayan_core.util.BottomSheetState.Idle,
     serviceName: String,
-    navigationIcon: @Composable () -> Unit,
-    actionIcon: @Composable () -> Unit,
+    navigationIcon: @Composable (modifier: Modifier) -> Unit,
+    actionIcon: @Composable (modifier: Modifier) -> Unit,
     content: @Composable BoxScope.() -> Unit,
     bottomBar: @Composable () -> Unit,
     onRemoveHeadFromQueue: () -> Unit,
