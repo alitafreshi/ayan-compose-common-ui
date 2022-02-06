@@ -19,7 +19,7 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
 
 /**
  * Info Bottom Sheet [Composable]
- * @param modifier
+ * actually we need to enable up stream apis to implement their custom view so we add nullable [Composable]
  * @param infoTitle the title of bottom sheet
  * @param infoTitleTextStyle the style of title of type [TextStyle]
  * @param infoDescription the description of bottom sheet
@@ -28,10 +28,70 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
  * @param infoButtonTextStyle the style of bottom sheet button of type [TextStyle]
  * @param [backGroundColor] [horizontalContentPadding] [contentVerticalArrangement] are the bottom sheet properties
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
+ * @param content a [Composable] that enables up stream to decide which view matches their use case
  */
 
 @Composable
 fun InfoBottomSheet(
+    infoTitle: String = stringResource(id = R.string.tv_info),
+    infoTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
+    infoDescription: String,
+    infoDescriptionTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
+    infoButton: String = stringResource(id = R.string.btn_ok),
+    infoButtonTextStyle: TextStyle = MaterialTheme.typography.button,
+    backGroundColor: Color = Color.White,
+    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
+    onButtonClick: () -> Unit,
+    content: @Composable ((
+        infoTitle: String,
+        infoTitleTextStyle: TextStyle,
+        infoDescription: String,
+        infoDescriptionTextStyle: TextStyle,
+        infoButton: String,
+        infoButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null
+
+) {
+    if (content != null) {
+        content(
+            infoTitle = infoTitle,
+            infoTitleTextStyle = infoTitleTextStyle,
+            infoDescription = infoDescription,
+            infoDescriptionTextStyle = infoDescriptionTextStyle,
+            infoButton = infoButton,
+            infoButtonTextStyle = infoButtonTextStyle,
+            backGroundColor = backGroundColor,
+            horizontalContentPadding = horizontalContentPadding,
+            contentVerticalArrangement = contentVerticalArrangement,
+            onButtonClick = onButtonClick
+        )
+
+    } else {
+
+        InfoBottomSheetContent(
+            infoTitle = infoTitle,
+            infoTitleTextStyle = infoTitleTextStyle,
+            infoDescription = infoDescription,
+            infoDescriptionTextStyle = infoDescriptionTextStyle,
+            infoButton = infoButton,
+            infoButtonTextStyle = infoButtonTextStyle,
+            backGroundColor = backGroundColor,
+            horizontalContentPadding = horizontalContentPadding,
+            contentVerticalArrangement = contentVerticalArrangement,
+            onButtonClick = onButtonClick
+        )
+
+    }
+}
+
+
+@Composable
+private fun InfoBottomSheetContent(
     modifier: Modifier = Modifier,
     infoTitle: String = stringResource(id = R.string.tv_info),
     infoTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
@@ -44,6 +104,7 @@ fun InfoBottomSheet(
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
     onButtonClick: () -> Unit
 ) {
+
     Column(
         modifier = modifier
             .fillMaxSize()

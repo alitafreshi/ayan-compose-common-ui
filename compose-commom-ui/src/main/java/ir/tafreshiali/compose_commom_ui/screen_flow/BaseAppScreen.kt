@@ -3,6 +3,10 @@ package ir.tafreshiali.compose_commom_ui.screen_flow
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import ir.tafreshiali.ayan_core.util.Queue
 import ir.tafreshiali.ayan_core.util.UIComponent
 import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
@@ -21,6 +25,9 @@ import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
  * @param content main content of each screen
  * @param bottomBar bottom bar of each screen
  * @param serviceName the name that should show on the toolbar
+ * @param loadingBottomSheetContent the content of loading bottom sheet
+ * @param errorBottomSheetContent the content of error bottom sheet
+ * @param infoBottomSheetContent the content of info bottom sheet
  * */
 
 
@@ -38,6 +45,43 @@ fun BaseAppScreen(
     onRetryButtonClick: (StateEvent: Any) -> Unit,
     onCancelButtonClick: () -> Unit,
     onOkButtonClick: () -> Unit,
+    loadingBottomSheetContent: @Composable ((
+        loadingTitle: String,
+        loadingTitleTextStyle: TextStyle,
+        cancelTitle: String,
+        cancelTitleTextStyle: TextStyle,
+        contentPadding: Dp,
+        backGroundColor: Color,
+        progressIndicatorColor: Color,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        contentHorizontalAlignment: Alignment.Horizontal,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null,
+
+    errorBottomSheetContent: @Composable ((
+        errorTitle: String,
+        errorTitleTextStyle: TextStyle,
+        errorDescription: String,
+        errorDescriptionTextStyle: TextStyle,
+        errorButton: String,
+        errorButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null,
+    infoBottomSheetContent: @Composable ((
+        infoTitle: String,
+        infoTitleTextStyle: TextStyle,
+        infoDescription: String,
+        infoDescriptionTextStyle: TextStyle,
+        infoButton: String,
+        infoButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null
 ) {
 
     BottomSheetScreenWithContent(
@@ -46,7 +90,10 @@ fun BaseAppScreen(
         onRetryButtonClick = onRetryButtonClick,
         onCancelButtonClick = onCancelButtonClick,
         onOkButtonClick = onOkButtonClick,
-        bottomSheetState = bottomSheetState
+        bottomSheetState = bottomSheetState,
+        loadingBottomSheetContent = loadingBottomSheetContent,
+        infoBottomSheetContent = infoBottomSheetContent,
+        errorBottomSheetContent = errorBottomSheetContent
 
     ) { modalBottomSheetState, scope ->
 

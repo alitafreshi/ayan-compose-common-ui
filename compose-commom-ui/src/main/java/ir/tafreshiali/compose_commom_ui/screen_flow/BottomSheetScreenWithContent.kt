@@ -7,8 +7,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import ir.tafreshiali.ayan_core.util.Queue
 import ir.tafreshiali.ayan_core.util.UIComponent
@@ -27,6 +29,9 @@ import kotlinx.coroutines.CoroutineScope
  * @param onCancelButtonClick this lambda function use for cancel the posted / sent  request to the server
  * @param onOkButtonClick this lambda function use for hiding the showed Info BottomSheet
  * @param mainContent the content that should be show on each screen
+ * @param loadingBottomSheetContent the content of loading bottom sheet
+ * @param errorBottomSheetContent the content of error bottom sheet
+ * @param infoBottomSheetContent the content of info bottom sheet
  * */
 
 
@@ -47,6 +52,43 @@ fun BottomSheetScreenWithContent(
     onRetryButtonClick: (StateEvent: Any) -> Unit,
     onCancelButtonClick: () -> Unit,
     onOkButtonClick: () -> Unit,
+    loadingBottomSheetContent: @Composable ((
+        loadingTitle: String,
+        loadingTitleTextStyle: TextStyle,
+        cancelTitle: String,
+        cancelTitleTextStyle: TextStyle,
+        contentPadding: Dp,
+        backGroundColor: Color,
+        progressIndicatorColor: Color,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        contentHorizontalAlignment: Alignment.Horizontal,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null,
+
+    errorBottomSheetContent: @Composable ((
+        errorTitle: String,
+        errorTitleTextStyle: TextStyle,
+        errorDescription: String,
+        errorDescriptionTextStyle: TextStyle,
+        errorButton: String,
+        errorButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null,
+    infoBottomSheetContent: @Composable ((
+        infoTitle: String,
+        infoTitleTextStyle: TextStyle,
+        infoDescription: String,
+        infoDescriptionTextStyle: TextStyle,
+        infoButton: String,
+        infoButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null,
     mainContent: @Composable (modalBottomSheetState: ModalBottomSheetState, scope: CoroutineScope) -> Unit
 ) {
 
@@ -77,7 +119,10 @@ fun BottomSheetScreenWithContent(
                     onRemoveHeadFromQueue = onRemoveHeadFromQueue,
                     onRetryButtonClick = onRetryButtonClick,
                     onCancelButtonClick = onCancelButtonClick,
-                    onOkButtonClick = onOkButtonClick
+                    onOkButtonClick = onOkButtonClick,
+                    loadingBottomSheetContent = loadingBottomSheetContent,
+                    infoBottomSheetContent = infoBottomSheetContent,
+                    errorBottomSheetContent = errorBottomSheetContent
                 )
             }
         }

@@ -18,7 +18,82 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
 
 /**
- * error bottom sheet composable
+ * error bottom sheet [Composable]
+ * actually we need to enable up stream apis to implement their custom view so we add nullable [Composable]
+ * @param errorTitle the title of bottom sheet
+ * @param errorTitleTextStyle the style of title of type [TextStyle]
+ * @param errorDescription the description of bottom sheet
+ * @param errorDescriptionTextStyle the style of description of type [TextStyle]
+ * @param errorButton the text of bottom sheet button
+ * @param errorButtonTextStyle the style of bottom sheet button of type [TextStyle]
+ * @param [backGroundColor] [horizontalContentPadding] [contentVerticalArrangement] are the bottom sheet properties
+ * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
+ * @param content a [Composable] that enables up stream to decide which view matches their use case
+ */
+
+@Composable
+fun ErrorBottomSheet(
+    errorTitle: String,
+    errorTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
+    errorDescription: String,
+    errorDescriptionTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
+    errorButton: String = stringResource(id = R.string.btn_retry),
+    errorButtonTextStyle: TextStyle = MaterialTheme.typography.button,
+    backGroundColor: Color = Color.White,
+    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
+    onButtonClick: () -> Unit,
+    content: @Composable ((
+        errorTitle: String,
+        errorTitleTextStyle: TextStyle,
+        errorDescription: String,
+        errorDescriptionTextStyle: TextStyle,
+        errorButton: String,
+        errorButtonTextStyle: TextStyle,
+        backGroundColor: Color,
+        horizontalContentPadding: Dp,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null
+) {
+
+    if (content != null) {
+
+        content(
+            errorTitle,
+            errorTitleTextStyle,
+            errorDescription,
+            errorDescriptionTextStyle,
+            errorButton,
+            errorButtonTextStyle,
+            backGroundColor,
+            horizontalContentPadding,
+            contentVerticalArrangement,
+            onButtonClick
+        )
+
+    } else {
+
+        ErrorBottomSheetContent(
+            errorTitle = errorTitle,
+            errorTitleTextStyle = errorTitleTextStyle,
+            errorDescription = errorDescription,
+            errorDescriptionTextStyle = errorDescriptionTextStyle,
+            errorButton = errorButton,
+            errorButtonTextStyle = errorButtonTextStyle,
+            backGroundColor = backGroundColor,
+            horizontalContentPadding = horizontalContentPadding,
+            contentVerticalArrangement = contentVerticalArrangement,
+            onButtonClick = onButtonClick
+        )
+    }
+
+}
+
+
+/**
+ * Error Bottom Sheet Content [Composable]
+ * the default content for error bottom sheet
  * @param modifier
  * @param errorTitle the title of bottom sheet
  * @param errorTitleTextStyle the style of title of type [TextStyle]
@@ -30,8 +105,9 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
  */
 
+
 @Composable
-fun ErrorBottomSheet(
+private fun ErrorBottomSheetContent(
     modifier: Modifier = Modifier,
     errorTitle: String,
     errorTitleTextStyle: TextStyle = MaterialTheme.typography.h4,

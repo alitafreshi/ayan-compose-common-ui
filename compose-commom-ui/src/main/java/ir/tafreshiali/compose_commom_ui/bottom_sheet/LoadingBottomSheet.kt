@@ -22,17 +22,85 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
 
 /**
  * Loading Bottom Sheet [Composable]
- * @param modifier
+ * actually we need to enable up stream apis to implement their custom view so we add nullable [Composable]
  * @param loadingTitle the title of bottom sheet
  * @param loadingTitleTextStyle the style of title of type [TextStyle]
  * @param cancelTitle the description of bottom sheet
  * @param cancelTitleTextStyle the style of cancel title of type [TextStyle]
  * @param [backGroundColor] [contentHorizontalAlignment] [contentVerticalArrangement] are the bottom sheet properties
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
+ * @param content a [Composable] that enables up stream to decide which view matches their use case
  */
 
 @Composable
 fun LoadingBottomSheet(
+    loadingTitle: String = stringResource(id = R.string.tv_loading),
+    loadingTitleTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
+    cancelTitle: String = stringResource(id = R.string.btn_cancel),
+    cancelTitleTextStyle: TextStyle = MaterialTheme.typography.button,
+    contentPadding: Dp = MaterialTheme.spacing.small,
+    backGroundColor: Color = Color.White,
+    progressIndicatorColor: Color = MaterialTheme.colors.primary,
+    contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
+    contentHorizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
+    onButtonClick: () -> Unit,
+    content: @Composable ((
+        loadingTitle: String,
+        loadingTitleTextStyle: TextStyle,
+        cancelTitle: String,
+        cancelTitleTextStyle: TextStyle,
+        contentPadding: Dp,
+        backGroundColor: Color,
+        progressIndicatorColor: Color,
+        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
+        contentHorizontalAlignment: Alignment.Horizontal,
+        onButtonClick: () -> Unit
+    ) -> Unit)? = null
+) {
+    if (content != null) {
+
+        content(
+            loadingTitle,
+            loadingTitleTextStyle,
+            cancelTitle,
+            cancelTitleTextStyle,
+            contentPadding,
+            backGroundColor,
+            progressIndicatorColor,
+            contentVerticalArrangement,
+            contentHorizontalAlignment,
+            onButtonClick
+        )
+
+    } else {
+        LoadingBottomSheetContent(
+            loadingTitle = loadingTitle,
+            loadingTitleTextStyle = loadingTitleTextStyle,
+            cancelTitle = cancelTitle,
+            cancelTitleTextStyle = cancelTitleTextStyle,
+            contentPadding = contentPadding,
+            backGroundColor = backGroundColor,
+            progressIndicatorColor = progressIndicatorColor,
+            contentVerticalArrangement = contentVerticalArrangement,
+            contentHorizontalAlignment = contentHorizontalAlignment,
+            onButtonClick = onButtonClick
+        )
+    }
+}
+
+/**
+ * Loading Bottom Sheet Content [Composable]
+ * the default content for loading bottom sheet
+ * @param loadingTitle the title of bottom sheet
+ * @param loadingTitleTextStyle the style of title of type [TextStyle]
+ * @param cancelTitle the description of bottom sheet
+ * @param cancelTitleTextStyle the style of cancel title of type [TextStyle]
+ * @param [backGroundColor] [contentHorizontalAlignment] [contentVerticalArrangement] are the bottom sheet properties
+ * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button*/
+
+
+@Composable
+private fun LoadingBottomSheetContent(
     modifier: Modifier = Modifier,
     loadingTitle: String = stringResource(id = R.string.tv_loading),
     loadingTitleTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
@@ -45,7 +113,6 @@ fun LoadingBottomSheet(
     contentHorizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
     onButtonClick: () -> Unit
 ) {
-
     Column(
         modifier = modifier
             .fillMaxSize()
