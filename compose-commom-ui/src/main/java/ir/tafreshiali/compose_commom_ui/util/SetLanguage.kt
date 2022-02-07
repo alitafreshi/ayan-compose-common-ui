@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import java.util.*
 
 @Composable
-private fun SetLanguage(appLanguageCode: String) {
+fun SetLanguage(appLanguageCode: String) {
     val locale = Locale(appLanguageCode)
     val configuration = LocalConfiguration.current
     configuration.setLocale(locale)
