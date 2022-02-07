@@ -48,10 +48,7 @@ fun GenericBottomSheet(
         cancelTitle: String,
         cancelTitleTextStyle: TextStyle,
         contentPadding: Dp,
-        backGroundColor: Color,
         progressIndicatorColor: Color,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
-        contentHorizontalAlignment: Alignment.Horizontal,
         onButtonClick: () -> Unit
     ) -> Unit)? = null,
 
@@ -62,9 +59,7 @@ fun GenericBottomSheet(
         errorDescriptionTextStyle: TextStyle,
         errorButton: String,
         errorButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null,
     infoBottomSheetContent: @Composable ((
@@ -74,9 +69,7 @@ fun GenericBottomSheet(
         infoDescriptionTextStyle: TextStyle,
         infoButton: String,
         infoButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 

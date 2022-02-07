@@ -50,9 +50,7 @@ fun InfoBottomSheet(
         infoDescriptionTextStyle: TextStyle,
         infoButton: String,
         infoButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 
@@ -65,9 +63,7 @@ fun InfoBottomSheet(
             infoDescriptionTextStyle = infoDescriptionTextStyle,
             infoButton = infoButton,
             infoButtonTextStyle = infoButtonTextStyle,
-            backGroundColor = backGroundColor,
             horizontalContentPadding = horizontalContentPadding,
-            contentVerticalArrangement = contentVerticalArrangement,
             onButtonClick = onButtonClick
         )
 

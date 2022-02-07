@@ -50,10 +50,7 @@ fun LoadingBottomSheet(
         cancelTitle: String,
         cancelTitleTextStyle: TextStyle,
         contentPadding: Dp,
-        backGroundColor: Color,
         progressIndicatorColor: Color,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
-        contentHorizontalAlignment: Alignment.Horizontal,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 ) {
@@ -65,10 +62,7 @@ fun LoadingBottomSheet(
             cancelTitle,
             cancelTitleTextStyle,
             contentPadding,
-            backGroundColor,
             progressIndicatorColor,
-            contentVerticalArrangement,
-            contentHorizontalAlignment,
             onButtonClick
         )
 

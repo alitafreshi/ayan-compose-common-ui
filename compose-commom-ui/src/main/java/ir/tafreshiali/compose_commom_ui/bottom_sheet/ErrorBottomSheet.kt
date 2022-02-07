@@ -50,9 +50,7 @@ fun ErrorBottomSheet(
         errorDescriptionTextStyle: TextStyle,
         errorButton: String,
         errorButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 ) {
@@ -60,16 +58,14 @@ fun ErrorBottomSheet(
     if (content != null) {
 
         content(
-            errorTitle,
-            errorTitleTextStyle,
-            errorDescription,
-            errorDescriptionTextStyle,
-            errorButton,
-            errorButtonTextStyle,
-            backGroundColor,
-            horizontalContentPadding,
-            contentVerticalArrangement,
-            onButtonClick
+            errorTitle = errorTitle,
+            errorTitleTextStyle = errorTitleTextStyle,
+            errorDescription = errorDescription,
+            errorDescriptionTextStyle = errorDescriptionTextStyle,
+            errorButton = errorButton,
+            errorButtonTextStyle = errorButtonTextStyle,
+            horizontalContentPadding = horizontalContentPadding,
+            onButtonClick = onButtonClick
         )
 
     } else {

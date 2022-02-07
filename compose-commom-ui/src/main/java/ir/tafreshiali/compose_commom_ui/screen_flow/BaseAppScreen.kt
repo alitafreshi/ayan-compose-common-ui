@@ -3,7 +3,6 @@ package ir.tafreshiali.compose_commom_ui.screen_flow
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -21,7 +20,6 @@ import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
  * @param onRetryButtonClick this lambda function use for resending the cancelled request to the server
  * @param onCancelButtonClick this lambda function use for cancel the posted / sent  request to the server
  * @param onOkButtonClick this lambda function use for hiding the showed Info BottomSheet
- * @param toolbarTitle the title of toolbar that brings a modifier for up streams
  * @param navigationIcon the navigation icon positioned on the right of screen ( like back button ) that brings a modifier for up streams
  * @param content main content of each screen
  * @param bottomBar bottom bar of each screen
@@ -52,10 +50,7 @@ fun BaseAppScreen(
         cancelTitle: String,
         cancelTitleTextStyle: TextStyle,
         contentPadding: Dp,
-        backGroundColor: Color,
         progressIndicatorColor: Color,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
-        contentHorizontalAlignment: Alignment.Horizontal,
         onButtonClick: () -> Unit
     ) -> Unit)? = null,
 
@@ -66,9 +61,7 @@ fun BaseAppScreen(
         errorDescriptionTextStyle: TextStyle,
         errorButton: String,
         errorButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null,
     infoBottomSheetContent: @Composable ((
@@ -78,9 +71,7 @@ fun BaseAppScreen(
         infoDescriptionTextStyle: TextStyle,
         infoButton: String,
         infoButtonTextStyle: TextStyle,
-        backGroundColor: Color,
         horizontalContentPadding: Dp,
-        contentVerticalArrangement: Arrangement.HorizontalOrVertical,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 ) {
