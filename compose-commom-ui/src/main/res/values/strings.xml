@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--Bottom Sheet-->
     <!--Loading State-->
-    <string name="tv_loading">در حال دریافت اطلاعات از سرور لطفا منتظر بمانید.</string>
-    <string name="btn_cancel">انصراف</string>
+    <string name="tv_loading">While receiving information from the server, please wait.</string>
+    <string name="btn_cancel">Cancel</string>
     <!--Error state-->
-    <string name="btn_retry">تلاش مجدد</string>
+    <string name="btn_retry">retry</string>
 
     <!--Info State-->
-    <string name="btn_ok">باشه</string>
-    <string name="tv_info">توجه</string>
+    <string name="btn_ok">OK</string>
+    <string name="tv_info">info</string>
 
     <!--Inquiry Screen-->
-    <string name="tv_inquiry_history_list">استعلام های پیشین</string>
+    <string name="tv_inquiry_history_list">Previous Inquiries</string>
 
-    <string name="tv_inquiry_history_list_empty">بعد از هر استعلام اطلاعات آن جهت استفاده مجدد در این بخش ذخیره و نمایش داده خواهد شد.</string>
+    <string name="tv_inquiry_history_list_empty">After each query, the information will be saved and displayed in this section for reuse.</string>
 
 </resources>
