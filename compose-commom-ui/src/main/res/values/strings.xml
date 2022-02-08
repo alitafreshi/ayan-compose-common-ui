@@ -1,35 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">منشی پلاس</string>
-
-    <!--Home Screen-->
-    <!--Cars Tab-->
-    <string name="tv_cars_tab_title">خودرو</string>
-    <string name="tv_car_traffic_bill">خلافی خودرو</string>
-    <string name="tv_freeway_toll_bill">عوارض آزادراهی</string>
-    <string name="tv_municipality_car_toll_bill">طرح ترافیک</string>
-    <string name="tv_driving_negative_point">نمره منفی</string>
-    <string name="tv_revoked_plate_number">پلاک های فک شده</string>
-    <string name="tv_third_party_insurance">بیمه شخص ثالث</string>
-    <string name="tv_driving_accidents">تصادفات رانندگی</string>
-    <string name="tv_technical_examination_certificate">معاینه فنی</string>
-    <string name="tv_municipality_car_annual_toll_bill">عوارض سالیانه</string>
-    <string name="tv_municipality_vehicle_park_toll_bill">پارک حاشیه ای</string>
-
-    <!--Post Tab-->
-    <string name="tv_post_tab_title">مرسولات پستی</string>
-    <string name="tv_post_package_tracking">مرسوله پستی</string>
-    <string name="tv_car_fuel_card_post_package_number">کارت سوخت</string>
-    <string name="tv_car_identification_documents_post_package_status">شناسنامه خودرو</string>
-    <string name="tv_car_identification_card_post_package_status">کارت خودرو</string>
-
-    <!--Bills Tab-->
-    <string name="tv_bills_tab_title">قبوض</string>
-    <string name="tv_water_bill">آب</string>
-    <string name="tv_electric_bill">برق</string>
-    <string name="tv_gas_bill">گاز</string>
-    <string name="tv_landline_phone_bills">تلفن ثابت</string>
-    <string name="tv_mobile_phone_bills">تلفن همراه</string>
 
     <!--Bottom Sheet-->
     <!--Loading State-->
@@ -42,20 +12,9 @@
     <string name="btn_ok">باشه</string>
     <string name="tv_info">توجه</string>
 
-
-
-    <!--Mobile Operators-->
-    <string name="tv_mci">همراه اول</string>
-    <string name="tv_irancell">ایرانسل</string>
-    <string name="tv_rightel">رایتل</string>
-
     <!--Inquiry Screen-->
     <string name="tv_inquiry_history_list">استعلام های پیشین</string>
 
     <string name="tv_inquiry_history_list_empty">بعد از هر استعلام اطلاعات آن جهت استفاده مجدد در این بخش ذخیره و نمایش داده خواهد شد.</string>
-
-    <string name="applicationNameForPishkhan">PishkhanMonshiPlus</string>
-    <string name="applicationName">MonshiPlus</string>
-    <string name="applicationType">android</string>
 
 </resources>
