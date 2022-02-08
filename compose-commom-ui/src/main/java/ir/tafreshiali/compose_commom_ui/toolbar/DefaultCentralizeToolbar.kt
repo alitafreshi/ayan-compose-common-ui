@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 
 
@@ -18,6 +19,7 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 fun DefaultCentralizeToolbar(
     modifier: Modifier = Modifier,
     toolbarTitle: String,
+    sidePadding: Dp = MaterialTheme.spacing.default,
     topBarContent: @Composable (() -> Unit)? = null,
     navigationIcon: @Composable (modifier: Modifier) -> Unit,
     actionIcon: @Composable (modifier: Modifier) -> Unit,
@@ -43,11 +45,10 @@ fun DefaultCentralizeToolbar(
             modifier = modifier
                 .fillMaxSize()
                 .padding(
-                    start = MaterialTheme.spacing.default,
-                    end = MaterialTheme.spacing.default,
+                    start = sidePadding,
+                    end = sidePadding,
                     top = padding.calculateTopPadding(),
                     bottom = padding.calculateBottomPadding()
-
                 )
         ) {
             content()

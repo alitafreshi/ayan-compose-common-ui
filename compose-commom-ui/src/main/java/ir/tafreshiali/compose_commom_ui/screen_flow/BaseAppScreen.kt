@@ -9,6 +9,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import ir.tafreshiali.ayan_core.util.Queue
 import ir.tafreshiali.ayan_core.util.UIComponent
+import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
 
 
@@ -36,6 +37,7 @@ fun BaseAppScreen(
     queue: Queue<UIComponent> = Queue(mutableListOf()),
     bottomSheetState: ir.tafreshiali.ayan_core.util.BottomSheetState = ir.tafreshiali.ayan_core.util.BottomSheetState.Idle,
     serviceName: String,
+    sidePadding: Dp = MaterialTheme.spacing.default,
     navigationIcon: @Composable (modifier: Modifier) -> Unit,
     actionIcon: @Composable (modifier: Modifier) -> Unit,
     topBarContent: @Composable (() -> Unit)? = null,
@@ -94,6 +96,7 @@ fun BaseAppScreen(
             toolbarTitle = serviceName,
             navigationIcon = navigationIcon,
             actionIcon = actionIcon,
+            sidePadding = sidePadding,
             topBarContent = topBarContent,
             content = content,
             bottomBar = bottomBar
