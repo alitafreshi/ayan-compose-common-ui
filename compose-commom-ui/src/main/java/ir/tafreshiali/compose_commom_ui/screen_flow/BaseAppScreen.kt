@@ -38,6 +38,7 @@ fun BaseAppScreen(
     serviceName: String,
     navigationIcon: @Composable (modifier: Modifier) -> Unit,
     actionIcon: @Composable (modifier: Modifier) -> Unit,
+    topBarContent: @Composable (() -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit,
     bottomBar: @Composable () -> Unit,
     onRemoveHeadFromQueue: () -> Unit,
@@ -93,6 +94,7 @@ fun BaseAppScreen(
             toolbarTitle = serviceName,
             navigationIcon = navigationIcon,
             actionIcon = actionIcon,
+            topBarContent = topBarContent,
             content = content,
             bottomBar = bottomBar
         )
