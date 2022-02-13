@@ -31,6 +31,7 @@ import kotlinx.coroutines.CoroutineScope
  * @param loadingBottomSheetContent the content of loading bottom sheet
  * @param errorBottomSheetContent the content of error bottom sheet
  * @param infoBottomSheetContent the content of info bottom sheet
+ * @param confirmBottomSheetContent the content of confirm bottom sheet
  * */
 
 
@@ -81,6 +82,7 @@ fun BottomSheetScreenWithContent(
         horizontalContentPadding: Dp,
         onButtonClick: () -> Unit
     ) -> Unit)? = null,
+    confirmBottomSheetContent: @Composable (() -> Unit)? = null,
     mainContent: @Composable (modalBottomSheetState: ModalBottomSheetState, scope: CoroutineScope) -> Unit
 ) {
 
@@ -114,7 +116,8 @@ fun BottomSheetScreenWithContent(
                     onOkButtonClick = onOkButtonClick,
                     loadingBottomSheetContent = loadingBottomSheetContent,
                     infoBottomSheetContent = infoBottomSheetContent,
-                    errorBottomSheetContent = errorBottomSheetContent
+                    errorBottomSheetContent = errorBottomSheetContent,
+                    confirmBottomSheetContent = confirmBottomSheetContent
                 )
             }
         }

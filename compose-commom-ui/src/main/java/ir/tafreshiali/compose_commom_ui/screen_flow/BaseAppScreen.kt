@@ -28,6 +28,7 @@ import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
  * @param loadingBottomSheetContent the content of loading bottom sheet
  * @param errorBottomSheetContent the content of error bottom sheet
  * @param infoBottomSheetContent the content of info bottom sheet
+ * @param confirmBottomSheetContent the content of confirm bottom sheet
  * */
 
 
@@ -76,7 +77,8 @@ fun BaseAppScreen(
         infoButtonTextStyle: TextStyle,
         horizontalContentPadding: Dp,
         onButtonClick: () -> Unit
-    ) -> Unit)? = null
+    ) -> Unit)? = null,
+    confirmBottomSheetContent: @Composable (() -> Unit)? = null
 ) {
 
     BottomSheetScreenWithContent(
@@ -88,7 +90,8 @@ fun BaseAppScreen(
         bottomSheetState = bottomSheetState,
         loadingBottomSheetContent = loadingBottomSheetContent,
         infoBottomSheetContent = infoBottomSheetContent,
-        errorBottomSheetContent = errorBottomSheetContent
+        errorBottomSheetContent = errorBottomSheetContent,
+        confirmBottomSheetContent = confirmBottomSheetContent
 
     ) { modalBottomSheetState, scope ->
 

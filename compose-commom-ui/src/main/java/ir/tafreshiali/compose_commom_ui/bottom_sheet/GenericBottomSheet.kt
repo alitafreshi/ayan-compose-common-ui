@@ -2,13 +2,11 @@ package ir.tafreshiali.compose_commom_ui.bottom_sheet
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -29,6 +27,7 @@ import ir.tafreshiali.ayan_core.util.UIComponent
  * @param loadingBottomSheetContent the content of loading bottom sheet
  * @param errorBottomSheetContent the content of error bottom sheet
  * @param infoBottomSheetContent the content of info bottom sheet
+ * @param confirmBottomSheetContent the content of confirm bottom sheet
  * */
 
 
@@ -71,7 +70,8 @@ fun GenericBottomSheet(
         infoButtonTextStyle: TextStyle,
         horizontalContentPadding: Dp,
         onButtonClick: () -> Unit
-    ) -> Unit)? = null
+    ) -> Unit)? = null,
+    confirmBottomSheetContent: @Composable (() -> Unit)? = null
 
 ) {
     if (!queue.isEmpty()) {
@@ -132,9 +132,16 @@ fun GenericBottomSheet(
 
         }
 
-        is BottomSheetState.MobileOperator -> {
+        is BottomSheetState.Confirm -> {
+            confirmBottomSheetContent?.let { content ->
+                ConfirmBottomSheet(content = content)
 
+                LaunchedEffect(key1 = state.currentValue) {
+                    state.animateTo(targetValue = ModalBottomSheetValue.Expanded, anim = tween(500))
+                }
+            }
         }
+
         is BottomSheetState.Idle -> {
             if (queue.isEmpty()) {
 
