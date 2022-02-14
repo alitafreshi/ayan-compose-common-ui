@@ -66,14 +66,6 @@ dependencies {
     implementation(Compose.icons)
     implementation(Compose.constraintLayout)
 
-    //Accompanist
-    implementation(Accompanist.viewPager)
-    implementation(Accompanist.viewPagerIndicator)
-
-
-    //Coil
-    implementation(Coil.coil)
-
     implementation(Domain.ayanCore)
 }
 
@@ -96,7 +88,7 @@ afterEvaluate {
                 artifactId = "ayan-compose-common-ui"
 
                 // Version Library Name (Example : "1.0.0")
-                version = "0.0.12"
+                version = "0.0.13"
             }
         }
     }

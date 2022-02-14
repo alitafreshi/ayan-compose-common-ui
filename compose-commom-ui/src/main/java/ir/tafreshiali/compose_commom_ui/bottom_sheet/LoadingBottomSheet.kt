@@ -1,10 +1,7 @@
 package ir.tafreshiali.compose_commom_ui.bottom_sheet
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -109,7 +106,8 @@ private fun LoadingBottomSheetContent(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .wrapContentHeight()
             .background(backGroundColor)
             .padding(contentPadding),
         verticalArrangement = contentVerticalArrangement,

@@ -118,7 +118,8 @@ private fun ErrorBottomSheetContent(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .wrapContentHeight()
             .background(backGroundColor)
             .padding(horizontal = horizontalContentPadding),
         verticalArrangement = contentVerticalArrangement

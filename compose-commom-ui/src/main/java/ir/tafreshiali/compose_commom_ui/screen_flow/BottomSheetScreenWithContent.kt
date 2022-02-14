@@ -7,7 +7,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -20,6 +22,7 @@ import kotlinx.coroutines.CoroutineScope
 
 /**
  * GOAL = To have default / general composable for using (centralize toolbar + tabs + view pager) with each other
+ * from now on the whole sheet content wraps around inside a [androidx.compose.foundation.layout.BoxWithConstraints] and the sheet content height limited to the middle of the phone screen
  * @param queue when ever an exception is happen with this queue we decided to show error message or not
  * @param bottomSheetState when ever we want to show  a bottom sheet ( loading / mobile operator or etc ) set the state and show related bottom sheet
  * @param onRemoveHeadFromQueue when ever an error happens and user close the bottom sheet ( via touch or pressing back button ) the error message should be remove from our queue
@@ -42,8 +45,8 @@ fun BottomSheetScreenWithContent(
     queue: Queue<UIComponent> = Queue(mutableListOf()),
     onRemoveHeadFromQueue: () -> Unit,
     bottomSheetState: ir.tafreshiali.ayan_core.util.BottomSheetState = ir.tafreshiali.ayan_core.util.BottomSheetState.Idle,
-    sheetBackgroundColor: Color = Color.White,
-    sheetElevation: Dp = MaterialTheme.spacing.extraSmall,
+    sheetBackgroundColor: Color = Color.Transparent,
+    sheetElevation: Dp = ModalBottomSheetDefaults.Elevation,
     isGestureEnable: Boolean = false,
     sheetShape: RoundedCornerShape = RoundedCornerShape(
         topStart = MaterialTheme.spacing.default,
@@ -96,29 +99,39 @@ fun BottomSheetScreenWithContent(
 
     ModalBottomSheetLayout(
         sheetBackgroundColor = sheetBackgroundColor,
-        sheetElevation = sheetElevation,
+        sheetElevation = MaterialTheme.spacing.unspecified,
         sheetShape = sheetShape,
         sheetState = state,
         sheetContent = {
-            Box(
+            BoxWithConstraints(
                 modifier = modifier
-                    .fillMaxWidth()
-                    .height(MaterialTheme.spacing.bottomSheetDefault)
-                    .background(MaterialTheme.colors.background)
+                    .fillMaxSize()
+                    .background(color = Color.Transparent),
+                contentAlignment = Alignment.BottomCenter
             ) {
-                GenericBottomSheet(
-                    queue = queue,
-                    bottomSheetState = bottomSheetState,
-                    state = state,
-                    onRemoveHeadFromQueue = onRemoveHeadFromQueue,
-                    onRetryButtonClick = onRetryButtonClick,
-                    onCancelButtonClick = onCancelButtonClick,
-                    onOkButtonClick = onOkButtonClick,
-                    loadingBottomSheetContent = loadingBottomSheetContent,
-                    infoBottomSheetContent = infoBottomSheetContent,
-                    errorBottomSheetContent = errorBottomSheetContent,
-                    confirmBottomSheetContent = confirmBottomSheetContent
-                )
+
+                Box(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .heightIn(max = maxHeight / 2)
+                        .shadow(elevation = sheetElevation, shape = sheetShape)
+                        .background(color = MaterialTheme.colors.background, shape = sheetShape)
+
+                ) {
+                    GenericBottomSheet(
+                        queue = queue,
+                        bottomSheetState = bottomSheetState,
+                        state = state,
+                        onRemoveHeadFromQueue = onRemoveHeadFromQueue,
+                        onRetryButtonClick = onRetryButtonClick,
+                        onCancelButtonClick = onCancelButtonClick,
+                        onOkButtonClick = onOkButtonClick,
+                        loadingBottomSheetContent = loadingBottomSheetContent,
+                        infoBottomSheetContent = infoBottomSheetContent,
+                        errorBottomSheetContent = errorBottomSheetContent,
+                        confirmBottomSheetContent = confirmBottomSheetContent
+                    )
+                }
             }
         }
     ) {
