@@ -35,7 +35,7 @@ fun LoadingBottomSheet(
     loadingTitleTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     cancelTitle: String = stringResource(id = R.string.btn_cancel),
     cancelTitleTextStyle: TextStyle = MaterialTheme.typography.button,
-    contentPadding: Dp = MaterialTheme.spacing.small,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     backGroundColor: Color = Color.White,
     progressIndicatorColor: Color = MaterialTheme.colors.primary,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
@@ -91,13 +91,13 @@ fun LoadingBottomSheet(
 
 
 @Composable
-private fun LoadingBottomSheetContent(
+fun LoadingBottomSheetContent(
     modifier: Modifier = Modifier,
     loadingTitle: String = stringResource(id = R.string.tv_loading),
     loadingTitleTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     cancelTitle: String = stringResource(id = R.string.btn_cancel),
     cancelTitleTextStyle: TextStyle = MaterialTheme.typography.button,
-    contentPadding: Dp = MaterialTheme.spacing.small,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     backGroundColor: Color = Color.White,
     progressIndicatorColor: Color = MaterialTheme.colors.primary,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,

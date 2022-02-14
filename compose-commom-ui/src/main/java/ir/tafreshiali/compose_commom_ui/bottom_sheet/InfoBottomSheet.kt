@@ -26,7 +26,7 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
  * @param infoDescriptionTextStyle the style of description of type [TextStyle]
  * @param infoButton the text of bottom sheet button
  * @param infoButtonTextStyle the style of bottom sheet button of type [TextStyle]
- * @param [backGroundColor] [horizontalContentPadding] [contentVerticalArrangement] are the bottom sheet properties
+ * @param [backGroundColor] [contentPadding] [contentVerticalArrangement] are the bottom sheet properties
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
  * @param content a [Composable] that enables up stream to decide which view matches their use case
  */
@@ -40,7 +40,7 @@ fun InfoBottomSheet(
     infoButton: String = stringResource(id = R.string.btn_ok),
     infoButtonTextStyle: TextStyle = MaterialTheme.typography.button,
     backGroundColor: Color = Color.White,
-    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentPadding: Dp = MaterialTheme.spacing.large,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
     onButtonClick: () -> Unit,
     content: @Composable ((
@@ -50,7 +50,7 @@ fun InfoBottomSheet(
         infoDescriptionTextStyle: TextStyle,
         infoButton: String,
         infoButtonTextStyle: TextStyle,
-        horizontalContentPadding: Dp,
+        contentPadding: Dp,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 
@@ -63,7 +63,7 @@ fun InfoBottomSheet(
             infoDescriptionTextStyle = infoDescriptionTextStyle,
             infoButton = infoButton,
             infoButtonTextStyle = infoButtonTextStyle,
-            horizontalContentPadding = horizontalContentPadding,
+            contentPadding = contentPadding,
             onButtonClick = onButtonClick
         )
 
@@ -77,7 +77,7 @@ fun InfoBottomSheet(
             infoButton = infoButton,
             infoButtonTextStyle = infoButtonTextStyle,
             backGroundColor = backGroundColor,
-            horizontalContentPadding = horizontalContentPadding,
+            contentPadding = contentPadding,
             contentVerticalArrangement = contentVerticalArrangement,
             onButtonClick = onButtonClick
         )
@@ -87,7 +87,7 @@ fun InfoBottomSheet(
 
 
 @Composable
-private fun InfoBottomSheetContent(
+fun InfoBottomSheetContent(
     modifier: Modifier = Modifier,
     infoTitle: String = stringResource(id = R.string.tv_info),
     infoTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
@@ -96,7 +96,7 @@ private fun InfoBottomSheetContent(
     infoButton: String = stringResource(id = R.string.btn_ok),
     infoButtonTextStyle: TextStyle = MaterialTheme.typography.button,
     backGroundColor: Color = Color.White,
-    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
     onButtonClick: () -> Unit
 ) {
@@ -106,7 +106,7 @@ private fun InfoBottomSheetContent(
             .fillMaxWidth()
             .wrapContentHeight()
             .background(backGroundColor)
-            .padding(horizontal = horizontalContentPadding),
+            .padding(contentPadding),
         verticalArrangement = contentVerticalArrangement
     ) {
         Text(
@@ -123,7 +123,8 @@ private fun InfoBottomSheetContent(
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Right,
             modifier = modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(vertical = MaterialTheme.spacing.extraSmall),
         )
 
         Text(

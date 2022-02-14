@@ -26,7 +26,7 @@ import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
  * @param errorDescriptionTextStyle the style of description of type [TextStyle]
  * @param errorButton the text of bottom sheet button
  * @param errorButtonTextStyle the style of bottom sheet button of type [TextStyle]
- * @param [backGroundColor] [horizontalContentPadding] [contentVerticalArrangement] are the bottom sheet properties
+ * @param [backGroundColor] [contentPadding] [contentVerticalArrangement] are the bottom sheet properties
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
  * @param content a [Composable] that enables up stream to decide which view matches their use case
  */
@@ -40,7 +40,7 @@ fun ErrorBottomSheet(
     errorButton: String = stringResource(id = R.string.btn_retry),
     errorButtonTextStyle: TextStyle = MaterialTheme.typography.button,
     backGroundColor: Color = Color.White,
-    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
     onButtonClick: () -> Unit,
     content: @Composable ((
@@ -50,7 +50,7 @@ fun ErrorBottomSheet(
         errorDescriptionTextStyle: TextStyle,
         errorButton: String,
         errorButtonTextStyle: TextStyle,
-        horizontalContentPadding: Dp,
+        contentPadding: Dp,
         onButtonClick: () -> Unit
     ) -> Unit)? = null
 ) {
@@ -64,7 +64,7 @@ fun ErrorBottomSheet(
             errorDescriptionTextStyle = errorDescriptionTextStyle,
             errorButton = errorButton,
             errorButtonTextStyle = errorButtonTextStyle,
-            horizontalContentPadding = horizontalContentPadding,
+            contentPadding = contentPadding,
             onButtonClick = onButtonClick
         )
 
@@ -78,7 +78,7 @@ fun ErrorBottomSheet(
             errorButton = errorButton,
             errorButtonTextStyle = errorButtonTextStyle,
             backGroundColor = backGroundColor,
-            horizontalContentPadding = horizontalContentPadding,
+            contentPadding = contentPadding,
             contentVerticalArrangement = contentVerticalArrangement,
             onButtonClick = onButtonClick
         )
@@ -97,13 +97,13 @@ fun ErrorBottomSheet(
  * @param errorDescriptionTextStyle the style of description of type [TextStyle]
  * @param errorButton the text of bottom sheet button
  * @param errorButtonTextStyle the style of bottom sheet button of type [TextStyle]
- * @param [backGroundColor] [horizontalContentPadding] [contentVerticalArrangement] are the bottom sheet properties
+ * @param [backGroundColor] [contentPadding] [contentVerticalArrangement] are the bottom sheet properties
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
  */
 
 
 @Composable
-private fun ErrorBottomSheetContent(
+fun ErrorBottomSheetContent(
     modifier: Modifier = Modifier,
     errorTitle: String,
     errorTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
@@ -112,7 +112,7 @@ private fun ErrorBottomSheetContent(
     errorButton: String = stringResource(id = R.string.btn_retry),
     errorButtonTextStyle: TextStyle = MaterialTheme.typography.button,
     backGroundColor: Color = Color.White,
-    horizontalContentPadding: Dp = MaterialTheme.spacing.large,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
     onButtonClick: () -> Unit
 ) {
@@ -121,7 +121,7 @@ private fun ErrorBottomSheetContent(
             .fillMaxWidth()
             .wrapContentHeight()
             .background(backGroundColor)
-            .padding(horizontal = horizontalContentPadding),
+            .padding(contentPadding),
         verticalArrangement = contentVerticalArrangement
     ) {
         Text(
@@ -138,7 +138,8 @@ private fun ErrorBottomSheetContent(
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Right,
             modifier = modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(vertical = MaterialTheme.spacing.extraSmall),
         )
 
         Text(
