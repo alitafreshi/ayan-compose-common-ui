@@ -66,6 +66,9 @@ dependencies {
     implementation(Compose.icons)
     implementation(Compose.constraintLayout)
 
+    implementation(Networking.gson)
+    implementation(Networking.gsonConvertor)
+
     implementation(Domain.ayanCore)
 }
 
@@ -88,7 +91,7 @@ afterEvaluate {
                 artifactId = "ayan-compose-common-ui"
 
                 // Version Library Name (Example : "1.0.0")
-                version = "0.0.14"
+                version = "0.0.15"
             }
         }
     }

@@ -38,7 +38,7 @@ fun <T> SelectableItemList(
         contentPadding = PaddingValues(vertical = MaterialTheme.spacing.large)
     ) {
 
-        itemsIndexed(itemList) { index, bill ->
+        itemsIndexed(itemList) { _, bill ->
             SelectableItem(
                 item = bill,
                 checkSate = selectedItemList.contains(bill),

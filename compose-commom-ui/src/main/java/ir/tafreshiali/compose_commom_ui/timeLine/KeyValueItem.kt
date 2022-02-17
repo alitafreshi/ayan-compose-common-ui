@@ -31,6 +31,7 @@ fun KeyValueList(
     modifier: Modifier = Modifier,
     backGroundColor: Color = Color.White,
     verticalItemSpacing: Dp = MaterialTheme.spacing.small,
+    contentPadding: Dp = MaterialTheme.spacing.default,
     itemList: List<Triple<String, String?, Boolean>>,
 ) {
     Column(
@@ -40,7 +41,7 @@ fun KeyValueList(
         verticalArrangement = Arrangement.spacedBy(verticalItemSpacing)
     ) {
         itemList.forEach { item ->
-            KeyValueItem(item = item)
+            KeyValueItem(item = item, contentPadding = contentPadding)
         }
     }
 }
@@ -72,6 +73,7 @@ fun KeyValueItem(
         modifier = modifier
             .fillMaxWidth()
             .background(backGroundColor)
+            .padding(contentPadding)
     ) {
         val (key, value, divider) = createRefs()
         Text(

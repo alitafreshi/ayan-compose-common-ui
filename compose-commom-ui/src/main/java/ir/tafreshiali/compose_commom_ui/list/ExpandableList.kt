@@ -35,7 +35,7 @@ fun <T> ExpandableList(
             stickyHeaderListInfo()
         }
 
-        itemsIndexed(itemList) { index, item ->
+        itemsIndexed(itemList) { _, item ->
             itemContent(item)
         }
     }

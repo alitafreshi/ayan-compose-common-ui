@@ -30,7 +30,7 @@ fun <T> AdvanceTimeLineItem(
     timeLineOption: TimeLineOption,
     item: T,
     infoContent: @Composable () -> Unit,
-    itemContent: @Composable ColumnScope.(T) -> Unit,
+    itemContent: @Composable (T) -> Unit,
 ) {
 
     ConstraintLayout(
