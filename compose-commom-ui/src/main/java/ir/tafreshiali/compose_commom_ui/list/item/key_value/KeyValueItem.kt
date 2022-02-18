@@ -1,10 +1,7 @@
 package ir.tafreshiali.compose_commom_ui.list.item.key_value
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -33,12 +30,13 @@ fun KeyValueList(
     modifier: Modifier = Modifier,
     backGroundColor: Color = Color.White,
     verticalItemSpacing: Dp = MaterialTheme.spacing.small,
-    contentPadding: Dp = MaterialTheme.spacing.default,
+    contentPadding: PaddingValues = PaddingValues(MaterialTheme.spacing.default),
     itemBackGroundColor: Color = Color.White,
     keyTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     keyTextColor: Color = Color.Gray,
     valueTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     valueTextColor: Color = Color.White,
+    valueTextSpacing: Dp = MaterialTheme.spacing.default,
     dividerColor: Color = Color.LightGray,
     dividerThickness: Dp = MaterialTheme.spacing.dividerExtraSmall,
     itemList: List<AdvanceKeyValue>,
@@ -54,12 +52,13 @@ fun KeyValueList(
                 item = item,
                 contentPadding = contentPadding,
                 backGroundColor = itemBackGroundColor,
-                keyTextStyle=keyTextStyle,
-                keyTextColor=keyTextColor,
-                valueTextStyle=valueTextStyle,
-                valueTextColor=valueTextColor,
-                dividerColor=dividerColor,
-                dividerThickness=dividerThickness
+                keyTextStyle = keyTextStyle,
+                keyTextColor = keyTextColor,
+                valueTextStyle = valueTextStyle,
+                valueTextColor = valueTextColor,
+                valueTextSpacing = valueTextSpacing,
+                dividerColor = dividerColor,
+                dividerThickness = dividerThickness
             )
         }
     }
@@ -78,12 +77,13 @@ fun KeyValueList(
 @Composable
 fun KeyValueItem(
     modifier: Modifier = Modifier,
-    contentPadding: Dp = MaterialTheme.spacing.default,
+    contentPadding: PaddingValues = PaddingValues(MaterialTheme.spacing.default),
     backGroundColor: Color = Color.White,
     keyTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     keyTextColor: Color = Color.Gray,
     valueTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
     valueTextColor: Color = Color.White,
+    valueTextSpacing: Dp = MaterialTheme.spacing.default,
     dividerColor: Color = Color.LightGray,
     dividerThickness: Dp = MaterialTheme.spacing.dividerExtraSmall,
     item: AdvanceKeyValue,
@@ -113,7 +113,7 @@ fun KeyValueItem(
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
                     end.linkTo(parent.end)
-                    start.linkTo(anchor = key.end, margin = contentPadding)
+                    start.linkTo(anchor = key.end, margin = valueTextSpacing)
                     width = Dimension.fillToConstraints
                 },
                 text = it,
