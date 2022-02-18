@@ -1,4 +1,4 @@
-package ir.tafreshiali.compose_commom_ui.timeLine
+package ir.tafreshiali.compose_commom_ui.list.item.key_value
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,14 +17,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import ir.tafreshiali.ayan_core.key_value.AdvanceKeyValue
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 
 
 /**
  * Key Value List [Composable]
  * @param modifier
- * @param [backGroundColor] [verticalItemSpacing] are the properties
- * @param itemList a list of type [Triple]*/
+ * @param [backGroundColor] [verticalItemSpacing] are the list properties
+ * @param [modifier] [backGroundColor] [keyTextStyle] [keyTextColor] [valueTextStyle] [valueTextColor] [dividerColor] [dividerThickness] are the key value item properties
+ * @param itemList a list of type [AdvanceKeyValue]*/
 
 @Composable
 fun KeyValueList(
@@ -32,7 +34,14 @@ fun KeyValueList(
     backGroundColor: Color = Color.White,
     verticalItemSpacing: Dp = MaterialTheme.spacing.small,
     contentPadding: Dp = MaterialTheme.spacing.default,
-    itemList: List<Triple<String, String?, Boolean>>,
+    itemBackGroundColor: Color = Color.White,
+    keyTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
+    keyTextColor: Color = Color.Gray,
+    valueTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
+    valueTextColor: Color = Color.White,
+    dividerColor: Color = Color.LightGray,
+    dividerThickness: Dp = MaterialTheme.spacing.dividerExtraSmall,
+    itemList: List<AdvanceKeyValue>,
 ) {
     Column(
         modifier = modifier
@@ -41,7 +50,17 @@ fun KeyValueList(
         verticalArrangement = Arrangement.spacedBy(verticalItemSpacing)
     ) {
         itemList.forEach { item ->
-            KeyValueItem(item = item, contentPadding = contentPadding)
+            KeyValueItem(
+                item = item,
+                contentPadding = contentPadding,
+                backGroundColor = itemBackGroundColor,
+                keyTextStyle=keyTextStyle,
+                keyTextColor=keyTextColor,
+                valueTextStyle=valueTextStyle,
+                valueTextColor=valueTextColor,
+                dividerColor=dividerColor,
+                dividerThickness=dividerThickness
+            )
         }
     }
 }
@@ -50,7 +69,7 @@ fun KeyValueList(
 /**
  * Key Value Item [Composable]
  * @param [modifier] [backGroundColor] [keyTextStyle] [keyTextColor] [valueTextStyle] [valueTextColor] [dividerColor] [dividerThickness] are the properties
- * @param item of type [Triple] basically we need a type that accepts tree different values :
+ * @param item of type [AdvanceKeyValue] basically we need a type that accepts tree different values :
  * 1 - a key of type [String]
  * 2 - a value if type [String]
  * 3 - a [Boolean] for setting the divider visibility*/
@@ -67,7 +86,7 @@ fun KeyValueItem(
     valueTextColor: Color = Color.White,
     dividerColor: Color = Color.LightGray,
     dividerThickness: Dp = MaterialTheme.spacing.dividerExtraSmall,
-    item: Triple<String, String?, Boolean>,
+    item: AdvanceKeyValue,
 ) {
     ConstraintLayout(
         modifier = modifier
@@ -82,13 +101,13 @@ fun KeyValueItem(
                 bottom.linkTo(parent.bottom)
                 start.linkTo(parent.start)
             },
-            text = item.first,
+            text = item.key,
             style = keyTextStyle,
             color = keyTextColor
         )
 
 
-        (if (!(item.second.isNullOrEmpty())) item.second else "")?.let {
+        (if (!(item.value.isNullOrEmpty())) item.value else "")?.let {
             Text(
                 modifier = modifier.constrainAs(value) {
                     top.linkTo(parent.top)
@@ -105,7 +124,7 @@ fun KeyValueItem(
             )
         }
 
-        if (item.third)
+        if (item.hasBottomDivider)
             Divider(
                 modifier = modifier
                     .constrainAs(divider) {

@@ -1,9 +1,11 @@
 package ir.tafreshiali.compose_commom_ui.timeLine
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.zIndex
@@ -14,7 +16,7 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 /**
  * Advance Time Line Item [Composable]
  * @param modifier
- * @param [topSpacing] [contentPadding] [lineWidth] [hasTopLine] [hasBottomLine] [timeLineOption] are the AdvanceTimeLineItem properties
+ * @param [backgroundColor] [topSpacing] [contentPadding] [hasTopLine] [hasBottomLine] [infoContentFraction] [timeLineOption] are the AdvanceTimeLineItem properties
  * @param item of generic type
  * @param infoContent a lambda function of type [Composable] for the right side of each time line item that enable up streams define their custom view
  * @param itemContent a lambda function of type [Composable] for the left side of each time line item that enable up streams define their custom view*/
@@ -22,13 +24,14 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 @Composable
 fun <T> AdvanceTimeLineItem(
     modifier: Modifier = Modifier,
+    item: T,
+    backgroundColor: Color = Color.White,
     topSpacing: Dp = MaterialTheme.spacing.extraLarge,
     contentPadding: Dp = MaterialTheme.spacing.small,
-    lineWidth: Dp = MaterialTheme.spacing.dividerExtraLarge,
     hasTopLine: Boolean = false,
     hasBottomLine: Boolean = false,
+    infoContentFraction: Float = 0.3f,
     timeLineOption: TimeLineOption,
-    item: T,
     infoContent: @Composable () -> Unit,
     itemContent: @Composable (T) -> Unit,
 ) {
@@ -36,6 +39,7 @@ fun <T> AdvanceTimeLineItem(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
+            .background(backgroundColor)
     ) {
 
         val (circle, infoContainer, topLine, bottomLine, timeLineContent, contentSpacing) = createRefs()
@@ -54,7 +58,7 @@ fun <T> AdvanceTimeLineItem(
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                 }
-                .fillMaxWidth(0.2f),
+                .fillMaxWidth(infoContentFraction),
         ) {
             infoContent()
         }
@@ -94,7 +98,7 @@ fun <T> AdvanceTimeLineItem(
                     bottom.linkTo(circle.top)
                     start.linkTo(circle.start)
                     end.linkTo(circle.end)
-                    width = Dimension.value(lineWidth)
+                    width = Dimension.value(timeLineOption.lineWidth)
                     height = Dimension.fillToConstraints
                 }, color = timeLineOption.lineColor
             )
@@ -107,11 +111,10 @@ fun <T> AdvanceTimeLineItem(
                         bottom.linkTo(parent.bottom)
                         start.linkTo(circle.start)
                         end.linkTo(circle.end)
-                        width = Dimension.value(lineWidth)
+                        width = Dimension.value(timeLineOption.lineWidth)
                         height = Dimension.fillToConstraints
                     },
                 color = timeLineOption.lineColor
             )
-
     }
 }
