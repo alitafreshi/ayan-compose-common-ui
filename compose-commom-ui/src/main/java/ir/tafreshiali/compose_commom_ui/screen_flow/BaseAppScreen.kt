@@ -18,6 +18,7 @@ import ir.tafreshiali.compose_commom_ui.toolbar.DefaultCentralizeToolbar
  * @param queue when ever an exception is happen with this queue we decided to show error message or not
  * @param bottomSheetState when ever we want to show  a bottom sheet ( loading / mobile operator or etc ) set the state and show related bottom sheet
  * @param onRemoveHeadFromQueue when ever an error happens and user close the bottom sheet ( via touch or pressing back button ) the error message should be remove from our queue
+ * @param isBottomSheetsDismissible a flag to determine when ever bottoms sheets should be dismissible or not
  * @param onRetryButtonClick this lambda function use for resending the cancelled request to the server
  * @param onCancelButtonClick this lambda function use for cancel the posted / sent  request to the server
  * @param onOkButtonClick this lambda function use for hiding the showed Info BottomSheet
@@ -39,6 +40,7 @@ fun BaseAppScreen(
     bottomSheetState: ir.tafreshiali.ayan_core.util.BottomSheetState = ir.tafreshiali.ayan_core.util.BottomSheetState.Idle,
     serviceName: String,
     sidePadding: Dp = MaterialTheme.spacing.default,
+    isBottomSheetsDismissible: Boolean = false,
     navigationIcon: @Composable (modifier: Modifier) -> Unit,
     actionIcon: @Composable (modifier: Modifier) -> Unit,
     topBarContent: @Composable (() -> Unit)? = null,
@@ -88,6 +90,7 @@ fun BaseAppScreen(
         onCancelButtonClick = onCancelButtonClick,
         onOkButtonClick = onOkButtonClick,
         bottomSheetState = bottomSheetState,
+        isGestureEnable = isBottomSheetsDismissible,
         loadingBottomSheetContent = loadingBottomSheetContent,
         infoBottomSheetContent = infoBottomSheetContent,
         errorBottomSheetContent = errorBottomSheetContent,
