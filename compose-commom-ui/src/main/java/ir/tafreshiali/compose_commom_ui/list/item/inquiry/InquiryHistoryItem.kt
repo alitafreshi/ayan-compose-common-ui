@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import ir.tafreshiali.ayan_core.inquiry_history.InquiryHistoryResponse
 import ir.tafreshiali.compose_commom_ui.R
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
@@ -94,6 +95,9 @@ fun InquiryHistoryItem(
             .constrainAs(divider) {
                 top.linkTo(tvQueryValue.bottom)
                 bottom.linkTo(parent.bottom)
+                end.linkTo(parent.end)
+                start.linkTo(parent.start)
+                width = Dimension.fillToConstraints
             })
     }
 }

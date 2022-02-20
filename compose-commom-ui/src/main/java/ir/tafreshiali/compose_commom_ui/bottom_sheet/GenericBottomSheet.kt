@@ -154,7 +154,7 @@ fun GenericBottomSheet(
     }
 
     BackHandler(
-        enabled = (state.currentValue == ModalBottomSheetValue.HalfExpanded || state.currentValue == ModalBottomSheetValue.Expanded),
+        enabled = true,
         onBack = onRemoveHeadFromQueue
     )
 }
