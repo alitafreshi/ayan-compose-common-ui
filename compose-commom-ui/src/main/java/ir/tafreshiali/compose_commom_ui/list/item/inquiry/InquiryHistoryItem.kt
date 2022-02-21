@@ -1,5 +1,6 @@
 package ir.tafreshiali.compose_commom_ui.list.item.inquiry
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import ir.tafreshiali.ayan_core.inquiry_history.InquiryHistoryResponse
@@ -19,10 +19,19 @@ import ir.tafreshiali.compose_commom_ui.R
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
 
+/** Inquiry History Item [Composable]
+ * @param modifier
+ * @param inquiryItem of type [InquiryHistoryResponse]
+ * @param dividerPadding enable setting some padding for bottom divider
+ * @param [onFavoriteClick] [onShowDialogClick] [onItemClick] are the ( actions / events) that user can fire off*/
+
 @Composable
 fun InquiryHistoryItem(
     modifier: Modifier = Modifier,
     inquiryItem: InquiryHistoryResponse,
+    dividerPadding: PaddingValues = PaddingValues(
+        top = MaterialTheme.spacing.extraSmall
+    ),
     onFavoriteClick: (item: InquiryHistoryResponse) -> Unit,
     onShowDialogClick: (item: InquiryHistoryResponse) -> Unit,
     onItemClick: (item: InquiryHistoryResponse) -> Unit
@@ -76,7 +85,6 @@ fun InquiryHistoryItem(
         IconButton(
             onClick = { onShowDialogClick(inquiryItem) },
             modifier = modifier
-                .then(modifier.size(MaterialTheme.spacing.iconMedium))
                 .constrainAs(verticalMenu) {
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
@@ -91,7 +99,7 @@ fun InquiryHistoryItem(
         }
 
         Divider(modifier = modifier
-            .padding(top = 5.dp)
+            .padding(dividerPadding)
             .constrainAs(divider) {
                 top.linkTo(tvQueryValue.bottom)
                 bottom.linkTo(parent.bottom)
