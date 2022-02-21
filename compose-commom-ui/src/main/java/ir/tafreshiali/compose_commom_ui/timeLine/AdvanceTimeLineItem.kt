@@ -16,7 +16,7 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 /**
  * Advance Time Line Item [Composable]
  * @param modifier
- * @param [backgroundColor] [topSpacing] [contentPadding] [hasTopLine] [hasBottomLine] [infoContentFraction] [timeLineOption] are the AdvanceTimeLineItem properties
+ * @param [backgroundColor] [contentPadding] [hasTopLine] [hasBottomLine] [infoContentFraction] [timeLineOption] are the AdvanceTimeLineItem properties
  * @param item of generic type
  * @param infoContent a lambda function of type [Composable] for the right side of each time line item that enable up streams define their custom view
  * @param itemContent a lambda function of type [Composable] for the left side of each time line item that enable up streams define their custom view*/
@@ -26,7 +26,6 @@ fun <T> AdvanceTimeLineItem(
     modifier: Modifier = Modifier,
     item: T,
     backgroundColor: Color = Color.White,
-    topSpacing: Dp = MaterialTheme.spacing.extraLarge,
     contentPadding: Dp = MaterialTheme.spacing.small,
     hasTopLine: Boolean = false,
     hasBottomLine: Boolean = false,
@@ -42,19 +41,12 @@ fun <T> AdvanceTimeLineItem(
             .background(backgroundColor)
     ) {
 
-        val (circle, infoContainer, topLine, bottomLine, timeLineContent, contentSpacing) = createRefs()
-
-        Spacer(modifier = modifier
-            .fillMaxWidth()
-            .constrainAs(contentSpacing) {
-                top.linkTo(parent.top)
-                height = Dimension.value(topSpacing)
-            })
+        val (circle, infoContainer, topLine, bottomLine, timeLineContent) = createRefs()
 
         Surface(
             modifier = modifier
                 .constrainAs(infoContainer) {
-                    top.linkTo(contentSpacing.bottom)
+                    top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                 }
