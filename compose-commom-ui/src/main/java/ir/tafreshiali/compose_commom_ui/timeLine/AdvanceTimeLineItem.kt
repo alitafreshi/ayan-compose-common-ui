@@ -15,6 +15,7 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 
 /**
  * Advance Time Line Item [Composable]
+ * now contents bounds to the top and bottom of the parent and there is no extra padding at the top of each item
  * @param modifier
  * @param [backgroundColor] [contentPadding] [hasTopLine] [hasBottomLine] [infoContentFraction] [timeLineOption] are the AdvanceTimeLineItem properties
  * @param item of generic type
