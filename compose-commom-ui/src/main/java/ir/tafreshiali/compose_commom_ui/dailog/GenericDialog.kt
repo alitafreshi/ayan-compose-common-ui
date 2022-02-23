@@ -15,11 +15,13 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 
 /**
  * GOAL = having a generic dialog for performing actions like (delete / edit etc)
- * @param [backGroundColor] [contentColor] [shape] [confirmButtonColor] [dismissButtonColor] are dialog attributes
- * @param [onCancel] [onDismiss] [onOk] are dialog actions
- * @param content main content of dialog of type [Composable]
- * @param [dismissOnBackPress] [dismissOnClickOutside] are the dialog properties
+ * @param [backGroundColor] [contentColor] [shape] are dialog attributes
+ * @param [onDismiss]  are dialog actions
  * @param header header of the dialog of type [Composable]
+ * @param content main content of dialog of type [Composable]
+ * @param bottomContent bottom bar of dialog that usually contains buttons / actions
+ * @param [dismissOnBackPress] [dismissOnClickOutside] are the dialog properties
+ *
  * */
 
 
@@ -27,57 +29,20 @@ import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 fun GenericDialog(
     modifier: Modifier = Modifier,
     header: @Composable () -> Unit,
-    okButtonText: String = "تایید",
-    cancelButtonText: String = "حذف",
     backGroundColor: Color = MaterialTheme.colors.background,
     contentColor: Color = MaterialTheme.colors.onBackground,
     shape: CornerBasedShape = MaterialTheme.shapes.medium,
-    confirmButtonColor: Color = MaterialTheme.colors.primary,
-    dismissButtonColor: Color = MaterialTheme.colors.error,
     dismissOnBackPress: Boolean = true,
     dismissOnClickOutside: Boolean = true,
     onDismiss: () -> Unit,
-    onCancel: () -> Unit,
-    onOk: () -> Unit,
+    bottomContent: @Composable () -> Unit,
     content: @Composable () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = header,
         text = content,
-        buttons = {
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(
-                        end = MaterialTheme.spacing.default,
-                        bottom = MaterialTheme.spacing.default
-                    ),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End
-            ) {
-                TextButton(
-                    onClick = onOk
-                ) {
-                    Text(
-                        text = okButtonText,
-                        style = MaterialTheme.typography.button,
-                        color = confirmButtonColor
-                    )
-                }
-
-                TextButton(
-                    onClick = onCancel
-
-                ) {
-                    Text(
-                        text = cancelButtonText,
-                        style = MaterialTheme.typography.button,
-                        color = dismissButtonColor
-                    )
-                }
-            }
-        },
+        buttons = bottomContent,
         backgroundColor = backGroundColor,
         contentColor = contentColor,
         shape = shape,
@@ -114,6 +79,56 @@ fun GenericDialogTitle(
             Icon(
                 imageVector = Icons.Default.Close,
                 contentDescription = "close button"
+            )
+        }
+    }
+}
+
+
+/**
+ * Bottom bar of a dialog
+ * @param modifier
+ * @param [okButtonText] [cancelButtonText] [confirmButtonColor] [dismissButtonColor] are the bottom bar container properties
+ * @param [onCancel] [onOk] are the dialog actions that user cant interact with them*/
+
+@Composable
+fun GenericDialogButtonsContainer(
+    modifier: Modifier = Modifier,
+    okButtonText: String = "تایید",
+    cancelButtonText: String = "حذف",
+    confirmButtonColor: Color = MaterialTheme.colors.primary,
+    dismissButtonColor: Color = MaterialTheme.colors.error,
+    onCancel: () -> Unit,
+    onOk: () -> Unit,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(
+                end = MaterialTheme.spacing.default,
+                bottom = MaterialTheme.spacing.default
+            ),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.End
+    ) {
+        TextButton(
+            onClick = onOk
+        ) {
+            Text(
+                text = okButtonText,
+                style = MaterialTheme.typography.button,
+                color = confirmButtonColor
+            )
+        }
+
+        TextButton(
+            onClick = onCancel
+
+        ) {
+            Text(
+                text = cancelButtonText,
+                style = MaterialTheme.typography.button,
+                color = dismissButtonColor
             )
         }
     }
