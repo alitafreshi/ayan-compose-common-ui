@@ -1,4 +1,4 @@
-package ir.tafreshiali.compose_commom_ui.input
+package ir.tafreshiali.compose_commom_ui.input.simple
 
 
 import androidx.compose.foundation.border
