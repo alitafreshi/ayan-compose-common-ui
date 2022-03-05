@@ -34,6 +34,8 @@ fun InquiryHistoryItemDialog(
     inputHeader: String,
     inputPlaceHolder: String,
     appName: String,
+    saveButtonTitle: String = "ذخیره",
+    deleteButtonTextTitle: String = "حذف",
     icon: @Composable () -> Unit,
     inputBackgroundColor: Color = Color.LightGray,
     contentColor: Color = contentColorFor(backgroundColor),
@@ -75,6 +77,8 @@ fun InquiryHistoryItemDialog(
                     onSaveButtonClick = onSaveButtonClick,
                     onDeleteButtonClick = onDeleteButtonClick,
                     saveButtonColor = saveButtonColor,
+                    saveButtonTitle = saveButtonTitle,
+                    deleteButtonTextTitle = deleteButtonTextTitle
                 )
             }
         }
