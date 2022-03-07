@@ -22,9 +22,21 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 
-/** in this stage we don't need this Composable*/
 
-/*@ExperimentalComposeUiApi
+/**
+ * plate input [Composable]
+ * @param modifier
+ * @param inputType of type [KeyboardType] specifies how much the user enters
+ * @param focusManager for clearing the focus from text field and hiding the keybord
+ * @param keyboardController of type [SoftwareKeyboardController] for controlling over the keyboard visibility
+ * @param [plateInputValue01] [plateInputValue02] [plateInputValue03] [plateInputValue04] are the values for the different part of plate input
+ * @param [onPlateInputValue01Change] [onPlateInputValue02Change] [onPlateInputValue03Change] for updating the plate input
+ * @param VehiclePlateLetterMappingList each car service has its own vehiclePlateLetterMappingList that comes from server dynamically
+ * @param expanded a flag for checking the state of plate letter drop down menu
+ * @param [onOpenMenuClick] [onDismissRequest] for updating the plate letter drop down menu state
+ * @param onMenuItemSelected for updating the selected plate letter*/
+
+@ExperimentalComposeUiApi
 @Composable
 fun PlateInputDecoration(
     modifier: Modifier = Modifier,
@@ -38,7 +50,7 @@ fun PlateInputDecoration(
     plateInputValue02: String,
     plateInputValue03: String,
     plateInputValue04: String,
-    appConfigOutput: AppConfigResponse? = null,
+    VehiclePlateLetterMappingList: List<String>? = null,
     expanded: Boolean = false,
     onOpenMenuClick: () -> Unit,
     onMenuItemSelected: (String) -> Unit,
@@ -107,9 +119,9 @@ fun PlateInputDecoration(
                     maxLines = 1
                 )
 
-                if (appConfigOutput != null) {
+                if (VehiclePlateLetterMappingList != null) {
                     DropDown(
-                        plateList = appConfigOutput.VehiclePlateLetterMappingsVersion01,
+                        plateList = VehiclePlateLetterMappingList,
                         expanded = expanded,
                         onMenuItemSelected = onMenuItemSelected,
                         onDismissRequest = onDismissRequest
@@ -198,10 +210,19 @@ fun PlateInputDecoration(
 }
 
 
+/**
+ * plate letter drop down [Composable]
+ * @param modifier
+ * @param plateList a list that contains plate letters that server sends to the client dynamically
+ * @param onMenuItemSelected for updating the selected plate letter
+ * @param onDismissRequest for updating the state of plate drop down menu
+ **/
+
+
 @Composable
 private fun DropDown(
     modifier: Modifier = Modifier,
-    plateList: List<KeyValue>,
+    plateList: List<String>,
     expanded: Boolean,
     onMenuItemSelected: (selectedItem: String) -> Unit,
     onDismissRequest: () -> Unit
@@ -213,15 +234,15 @@ private fun DropDown(
         onDismissRequest = onDismissRequest
     ) {
 
-        plateList.forEachIndexed { index, plate ->
-            DropdownMenuItem(onClick = { onMenuItemSelected(plate.Value ?: "") }
+        plateList.forEach { plate ->
+            DropdownMenuItem(onClick = { onMenuItemSelected(plate) }
             ) {
                 Text(
-                    text = "${plate.Value}",
+                    text = plate,
                     style = MaterialTheme.typography.subtitle2,
                     modifier = modifier.weight(1f)
                 )
             }
         }
     }
-}*/
+}
