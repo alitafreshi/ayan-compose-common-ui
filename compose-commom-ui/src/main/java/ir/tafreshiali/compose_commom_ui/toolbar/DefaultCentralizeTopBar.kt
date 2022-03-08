@@ -56,6 +56,7 @@ fun DefaultCentralizeTopBar(
                 navigationIcon(modifier = modifier.constrainAs(navigationView) {
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 })
 
@@ -63,10 +64,9 @@ fun DefaultCentralizeTopBar(
                     modifier = modifier.constrainAs(actionView) {
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
-                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
                     })
             }
-
         }
     }
 }
