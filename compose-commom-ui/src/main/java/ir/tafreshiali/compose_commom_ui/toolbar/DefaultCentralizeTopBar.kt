@@ -57,7 +57,6 @@ fun DefaultCentralizeTopBar(
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
-                    end.linkTo(parent.end)
                 })
 
                 actionIcon(
