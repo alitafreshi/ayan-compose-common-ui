@@ -53,18 +53,18 @@ fun DefaultCentralizeTopBar(
             ConstraintLayout(modifier = modifier.fillMaxSize()) {
                 val (actionView, navigationView) = createRefs()
 
+                navigationIcon(modifier = modifier.constrainAs(navigationView) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(parent.end)
+                })
+
                 actionIcon(
                     modifier = modifier.constrainAs(actionView) {
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
-                        end.linkTo(parent.end)
+                        start.linkTo(parent.start)
                     })
-
-                navigationIcon(modifier = modifier.constrainAs(navigationView) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    start.linkTo(parent.start)
-                })
             }
 
         }
