@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -104,61 +103,6 @@ fun ErrorBottomSheet(
  * @param onButtonClick a lambda function for reacting to the user clicks of bottom sheet button
  */
 
-
-/*
-@Composable
-fun ErrorBottomSheetContent(
-    modifier: Modifier = Modifier,
-    errorTitle: String,
-    errorTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
-    errorDescription: String,
-    errorDescriptionTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
-    errorButton: String = stringResource(id = R.string.btn_retry),
-    errorButtonTextStyle: TextStyle = MaterialTheme.typography.button,
-    backGroundColor: Color = Color.White,
-    contentPadding: Dp = MaterialTheme.spacing.default,
-    contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
-    onButtonClick: () -> Unit
-) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(backGroundColor)
-            .padding(contentPadding),
-        verticalArrangement = contentVerticalArrangement
-    ) {
-        Text(
-            text = errorTitle,
-            style = errorTitleTextStyle,
-            modifier = modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Right
-        )
-
-        Text(
-            text = errorDescription,
-            style = errorDescriptionTextStyle,
-            fontWeight = FontWeight.Medium,
-            textAlign = TextAlign.Right,
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(vertical = MaterialTheme.spacing.extraSmall),
-        )
-
-        Text(
-            text = errorButton,
-            style = errorButtonTextStyle,
-            color = MaterialTheme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            modifier = modifier
-                .noRippleClickable(onClick = onButtonClick)
-                .align(Alignment.End)
-        )
-    }
-}*/
-
-
 @Composable
 fun ErrorBottomSheetContent(
     modifier: Modifier = Modifier,
@@ -200,7 +144,6 @@ fun ErrorBottomSheetContent(
             text = errorDescription,
             style = errorDescriptionTextStyle,
             fontWeight = FontWeight.Medium,
-            textAlign = TextAlign.Right,
             modifier = modifier
                 .constrainAs(tvErrorDescription) {
                     top.linkTo(tvError.bottom)

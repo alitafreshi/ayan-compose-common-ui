@@ -6,14 +6,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
@@ -89,64 +87,6 @@ fun InfoBottomSheet(
     }
 }
 
-
-/*
-@Composable
-fun InfoBottomSheetContent(
-    modifier: Modifier = Modifier,
-    infoTitle: String = stringResource(id = R.string.tv_info),
-    infoTitleTextStyle: TextStyle = MaterialTheme.typography.h4,
-    infoDescription: String,
-    infoDescriptionTextStyle: TextStyle = MaterialTheme.typography.subtitle2,
-    infoButton: String = stringResource(id = R.string.btn_ok),
-    infoButtonTextStyle: TextStyle = MaterialTheme.typography.button,
-    backGroundColor: Color = Color.White,
-    contentPadding: Dp = MaterialTheme.spacing.default,
-    contentVerticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.Center,
-    onButtonClick: () -> Unit
-) {
-
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(backGroundColor)
-            .padding(contentPadding),
-        verticalArrangement = contentVerticalArrangement
-    ) {
-        Text(
-            text = infoTitle,
-            style = infoTitleTextStyle,
-            modifier = modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Right
-        )
-
-        Text(
-            text = infoDescription,
-            style = infoDescriptionTextStyle,
-            fontWeight = FontWeight.Medium,
-            textAlign = TextAlign.Right,
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(vertical = MaterialTheme.spacing.extraSmall),
-        )
-
-        Text(
-            text = infoButton,
-            style = infoButtonTextStyle,
-            color = MaterialTheme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            modifier = modifier
-                .noRippleClickable(onClick = onButtonClick)
-                .align(Alignment.End)
-        )
-    }
-}*/
-
-
-
-
 @Composable
 fun InfoBottomSheetContent(
     modifier: Modifier = Modifier,
@@ -187,7 +127,6 @@ fun InfoBottomSheetContent(
             text = infoDescription,
             style = infoDescriptionTextStyle,
             fontWeight = FontWeight.Medium,
-            textAlign = TextAlign.Right,
             modifier = modifier
                 .constrainAs(tvInfoDescription) {
                     top.linkTo(tvInfoTitle.bottom)
