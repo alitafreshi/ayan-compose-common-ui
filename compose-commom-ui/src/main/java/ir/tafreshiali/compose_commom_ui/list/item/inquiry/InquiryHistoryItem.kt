@@ -14,27 +14,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import ir.tafreshiali.ayan_core.inquiry_history.InquiryHistoryResponse
+import ir.tafreshiali.ayan_core_ui.history.InquiryHistory
 import ir.tafreshiali.compose_commom_ui.R
 import ir.tafreshiali.compose_commom_ui.responsiveness.spacing
 import ir.tafreshiali.compose_commom_ui.util.noRippleClickable
 
 /** Inquiry History Item [Composable]
  * @param modifier
- * @param inquiryItem of type [InquiryHistoryResponse]
+ * @param inquiryItem of type [InquiryHistory]
  * @param dividerPadding enable setting some padding for bottom divider
  * @param [onFavoriteClick] [onShowDialogClick] [onItemClick] are the ( actions / events) that user can fire off*/
 
 @Composable
 fun InquiryHistoryItem(
     modifier: Modifier = Modifier,
-    inquiryItem: InquiryHistoryResponse,
+    inquiryItem: InquiryHistory,
     dividerPadding: PaddingValues = PaddingValues(
         top = MaterialTheme.spacing.extraSmall
     ),
-    onFavoriteClick: (item: InquiryHistoryResponse) -> Unit,
-    onShowDialogClick: (item: InquiryHistoryResponse) -> Unit,
-    onItemClick: (item: InquiryHistoryResponse) -> Unit
+    onFavoriteClick: (item: InquiryHistory) -> Unit,
+    onShowDialogClick: (item: InquiryHistory) -> Unit,
+    onItemClick: (item: InquiryHistory) -> Unit
 ) {
 
     ConstraintLayout(
